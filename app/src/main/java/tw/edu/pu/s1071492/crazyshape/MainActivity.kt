@@ -18,7 +18,7 @@ public final class MyAppGlideModule : AppGlideModule()
 
 class MainActivity : AppCompatActivity() ,GestureDetector.OnGestureListener, View.OnTouchListener{
     lateinit var gDetector: GestureDetector
-
+    var Y = 2
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -33,6 +33,7 @@ class MainActivity : AppCompatActivity() ,GestureDetector.OnGestureListener, Vie
 
 
         gDetector = GestureDetector(this, this)
+
         imgNext.setOnTouchListener(this)
         Toast.makeText(this, "作者:陳昱丰", Toast.LENGTH_SHORT).show();
 
@@ -58,18 +59,22 @@ class MainActivity : AppCompatActivity() ,GestureDetector.OnGestureListener, Vie
         var X:Int = (1..4).random()
         if(X == 1){val img: ImageView = findViewById(R.id.imgNext)
             img.setImageResource(R.drawable.circle)
+            Y=1
         }
         else if(X==2){
             val img: ImageView = findViewById(R.id.imgNext)
             img.setImageResource(R.drawable.square)
+            Y=2
         }
         else if(X==3){
             val img: ImageView = findViewById(R.id.imgNext)
             img.setImageResource(R.drawable.star)
+            Y=3
         }
         else if(X==4){
             val img: ImageView = findViewById(R.id.imgNext)
             img.setImageResource(R.drawable.triangle)
+            Y=4
         }
         return true}
 
@@ -82,10 +87,28 @@ class MainActivity : AppCompatActivity() ,GestureDetector.OnGestureListener, Vie
     }
 
     override fun onLongPress(p0: MotionEvent?) {
-        val img: ImageView = findViewById(R.id.imgNext)
-        if(img.equals("circle"))
-        intent = Intent(this@MainActivity, GameActivity::class.java)
-        startActivity(intent)
+
+        if(Y==1){
+            intent = Intent(this@MainActivity, GameActivity::class.java)
+            intent.putExtra("形狀","circle")
+            startActivity(intent)
+        }
+        else if(Y==2){
+            intent = Intent(this@MainActivity, GameActivity::class.java)
+            intent.putExtra("形狀","square")
+            startActivity(intent)
+        }
+        else if(Y==3){
+            intent = Intent(this@MainActivity, GameActivity::class.java)
+            intent.putExtra("形狀","star")
+            startActivity(intent)
+        }
+        else if(Y==4){
+            intent = Intent(this@MainActivity, GameActivity::class.java)
+            intent.putExtra("形狀","triangle")
+            startActivity(intent)
+        }
+
     }
 
     override fun onFling(

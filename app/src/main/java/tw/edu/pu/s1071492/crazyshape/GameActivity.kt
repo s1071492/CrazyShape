@@ -6,6 +6,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MotionEvent
 import android.view.View
+import android.widget.Button
+import android.widget.TextView
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_game.*
 import kotlinx.android.synthetic.main.activity_main.*
@@ -14,16 +16,22 @@ import tw.edu.pu.s1071492.crazyshape.ml.Shapes
 
 
 class GameActivity : AppCompatActivity() {
-
+    var back = false
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_game)
+        intent = getIntent()
+        var type = intent.getStringExtra("形狀")
+        var msg :TextView = findViewById(R.id.txvMsg)
+        msg.setText(type)
         btn.setOnClickListener(object: View.OnClickListener{
             override fun onClick(p0: View?) {
                 handv.path.reset()
                 handv.invalidate()
             }
         })
+        var lock :Button= findViewById(R.id.btnpre)
+
         btnpre.setOnClickListener(object:View.OnClickListener{
             override fun onClick(p0: View?) {
                 finish()
