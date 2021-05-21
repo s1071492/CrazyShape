@@ -18,6 +18,8 @@ public final class MyAppGlideModule : AppGlideModule()
 
 class MainActivity : AppCompatActivity() ,GestureDetector.OnGestureListener, View.OnTouchListener{
     lateinit var gDetector: GestureDetector
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -41,7 +43,26 @@ class MainActivity : AppCompatActivity() ,GestureDetector.OnGestureListener, Vie
     }
 
 
-    override fun onDown(p0: MotionEvent?): Boolean {return true}
+    override fun onDown(p0: MotionEvent?): Boolean {
+        var X:Int = (1..4).random()
+        if(X == 1){val img: ImageView = findViewById(R.id.imgNext)
+            img.setImageResource(R.drawable.circle)
+           }
+        else if(X==2){
+            val img: ImageView = findViewById(R.id.imgNext)
+            img.setImageResource(R.drawable.square)
+        }
+        else if(X==3){
+            val img: ImageView = findViewById(R.id.imgNext)
+            img.setImageResource(R.drawable.star)
+        }
+        else if(X==4){
+            val img: ImageView = findViewById(R.id.imgNext)
+            img.setImageResource(R.drawable.triangle)
+        }
+        return true
+
+    }
 
     override fun onShowPress(p0: MotionEvent?) {}
 
