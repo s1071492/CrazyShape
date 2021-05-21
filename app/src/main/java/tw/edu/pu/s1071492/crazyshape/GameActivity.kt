@@ -23,7 +23,18 @@ class GameActivity : AppCompatActivity() {
         intent = getIntent()
         var type = intent.getStringExtra("形狀")
         var msg :TextView = findViewById(R.id.txvMsg)
-        msg.setText(type)
+        if(type == "circle"){
+            msg.setText("請畫出圓形")
+        }
+        else if(type == "triangle"){
+            msg.setText("請畫出三角形")
+        }
+        else if(type == "star"){
+            msg.setText("請畫出星形")
+        }
+        else if(type == "square"){
+            msg.setText("請畫出方形")
+        }
         btn.setOnClickListener(object: View.OnClickListener{
             override fun onClick(p0: View?) {
                 handv.path.reset()

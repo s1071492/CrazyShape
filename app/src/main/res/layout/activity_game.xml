@@ -12,8 +12,7 @@
         android:id="@+id/txvMsg"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="遊戲畫面" />
+        android:gravity="center" />
 
     <Button
         android:id="@+id/btnpre"
