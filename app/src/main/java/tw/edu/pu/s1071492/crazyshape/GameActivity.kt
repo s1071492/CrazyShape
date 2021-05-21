@@ -17,6 +17,7 @@ import tw.edu.pu.s1071492.crazyshape.ml.Shapes
 
 class GameActivity : AppCompatActivity() {
     var back = false
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_game)
@@ -41,14 +42,15 @@ class GameActivity : AppCompatActivity() {
                 handv.invalidate()
             }
         })
-        var lock :Button= findViewById(R.id.btnpre)
+
 
         btnpre.setOnClickListener(object:View.OnClickListener{
             override fun onClick(p0: View?) {
                 finish()
             }
         })
-
+        var lock :Button= findViewById(R.id.btnpre)
+        lock.setEnabled(false)
         handv.setOnTouchListener(object:View.OnTouchListener{
             override fun onTouch(p0: View?, event: MotionEvent): Boolean {
                 var xPos = event.getX()
@@ -81,7 +83,7 @@ class GameActivity : AppCompatActivity() {
                 sortByDescending { it.score } // 排序，高匹配率優先
             }.take(1)  //取最高的1個
 
-
+        var check :String = ""
         var Result:String = ""
         when (outputs[0].label) {
             "circle" -> Result = "圓形"
@@ -89,8 +91,20 @@ class GameActivity : AppCompatActivity() {
             "star" -> Result = "星形"
             "triangle" -> Result = "三角形"
         }
-        Result += ": " + String.format("%.1f%%", outputs[0].score * 100.0f)
-
+        check = Result
+        Result = "您畫的是"+Result+"，"
+        var type = intent.getStringExtra("形狀")
+        var check_ =""
+        if(type.equals("circle"))check_="圓形"
+        else if(type.equals("square"))check_="方形"
+        else if(type.equals("triangle"))check_="三角形"
+        else if(type.equals("star"))check_="星形"
+        if(check.equals(check_)){
+            Result+="恭喜順利過關！"
+            var lock :Button= findViewById(R.id.btnpre)
+            lock.setEnabled(true)
+        }
+        else{Result+="請再試試看喔！"}
 
 
         // Releases model resources if no longer used.
